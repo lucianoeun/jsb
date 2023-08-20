@@ -1,14 +1,9 @@
-const db = require('./db/conexao')
+const user = require('./db/usuario');
 
-function load(){
 
-    const conn = db.conexao();
-    conn.connect(); 
-    conn.query('SELECT * FROM usuario', (error, results, fields) =>{
-      if (error) throw error;
-      console.log(results);
-    });  
-
-    conn.end();
-    return results;
+async function listar(){
+    let retornar_lista = await user.listar();
+    console.log(retornar_lista);
 }
+
+listar()

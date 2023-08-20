@@ -1,12 +1,11 @@
 {
   "name": "jsb",
   "version": "1.0.0",
-  "description": "base em javascript para o fivem gta rp",
   "main": "index.js",
-  "repository": "https://github.com/lmideias/jsb.git",
+  "repository": "https://github.com/lucianoeun/jsb.git",
   "author": "LucianoEun <lucianoeun@hotmail.com>",
   "license": "MIT",
   "dependencies": {
-    "mysql": "mysqljs/mysql"
+    "mysql2": "^3.6.0"
   }
 }

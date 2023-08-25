@@ -1,12 +1,17 @@
+const user = require('./db/user');
 
+var steamkey = null;
+var userId = null;
 
 on("playerConnecting", (name, setKickReason, deferrals) => {
     deferrals.defer();
   
     const player = global.source;
   
-    setTimeout(() => {
-      deferrals.update(`Hello ${name}. Your steam ID is being checked.`);
+    setTimeout(async() => {
+
+      //primeira mensagem de verificação
+      deferrals.update(`Olá ${name}. estamos pegando o codigo de sua steam.`);
   
       let steamIdentifier = null;
   
@@ -16,15 +21,32 @@ on("playerConnecting", (name, setKickReason, deferrals) => {
         if (identifier.includes("steam:")) {
           
             steamIdentifier = identifier;
+            steamkey = steamIdentifier;
+
+            console.log(steamkey)
 
           //verificar se a steam existe no banco.
+          userId = await user.verificarSteam(steamkey)
 
-          //cadastrar a steam, retornar id, informar aguardando ativação.
+          if(userId){
+              const ativado = await  user.verificarAtivado(userId);
+              if(ativado){
+                deferrals.done();
+              }else{
+                deferrals.done(`Olá ${name}, Este e o seu Id: ${userId}, aguardar sua ativação pelo Discord`);
+              }
+          }else{
+              //cadastar
 
-          //verificar se a steam esta ativada, retornar id, informar aguardando ativação.
+              let uid = await user.inserirSteam(steamkey);             
 
+              if(uid){
+                deferrals.done(`Olá ${name}, Este e o seu Id: ${uid}, aguardar sua ativação pelo Discord`);
+              }else{
+                deferrals.done(`Olá ${name}, Erro no cadastro da sua steam, tente entrar mais tarde`);
+              }
 
-          //logar
+          }
 
         }
       }
@@ -32,7 +54,7 @@ on("playerConnecting", (name, setKickReason, deferrals) => {
       // pretend to be a wait
       setTimeout(() => {
         if (steamIdentifier === null) {
-          deferrals.done("You are not connected to Steam.");
+          deferrals.done("Você precisa estar com a Steam aberta.");
         } else {
           deferrals.done();
         }

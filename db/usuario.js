@@ -1,5 +1,6 @@
 const conexao = require('./conexao');
 
+//ID, STEAMKEY, ATIVO, DATACAD, DATAACESSO
 
 //select
 async function listar(){

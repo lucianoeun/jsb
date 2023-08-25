@@ -7,4 +7,4 @@ description 'Example resource'
 version '1.0.0'
 
 
-server_script {'index.js'}
+server_script {'login.js'}

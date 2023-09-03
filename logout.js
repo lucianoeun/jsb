@@ -7,10 +7,16 @@ on("playerDropped", async(reason) => {
 
     console.log(`Usuario da ${steamkey}, saiu da cidade via ${reason}`); 
 
+    //-----------------------------------------
+
     const userId = await user.verificarSteam(steamkey);
     console.log("User id na saida: "+userId)
+
+    //-----------------------------------------
+
+    // const ped = GetPlayerPed(playerId)
+    // const [x,y,z] = await GetEntityCoords(ped);
+    // const h = await GetEntityHeading(ped)
+    // console.log(`X: ${x}, Y: ${y}, Z: ${z}, H:${h}`);
    
-});  
-
-
-//salvar posição
+}); 

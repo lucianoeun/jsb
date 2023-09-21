@@ -2,14 +2,17 @@
 fx_version 'cerulean'
 games { 'rdr3', 'gta5' }
 
-author 'John Doe <j.doe@example.com>'
-description 'Example resource'
+author 'LucianoEun'
+description 'Primeira base feita em javascript'
 version '1.0.0'
 
-client_script{ 'client.js' }
-
-server_script {
-    'login.js',
-    'logout.js',
-    'teleporte.js'
+client_script{ 
+    'login/client.js' 
 }
+
+server_script {    
+    'login/server.js'    
+}
+
+ui_page 'login/index.html'
+files 'login/index.html'

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+    <style>
+      *{
+        box-sizing: border-box; 
+        margin: 0;
+        padding: 0;
+        outline: 0;
+        }
+
+        .app{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;          
+            background-color: #0d1f23ce;          
+        }
+
+        .btn{
+            width: 120px;
+            height: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);  
+            background-color: #fff;            
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+
+        <div class="app" v-if="btnxv">
+            <div class="btn" @click="btnx()" v-if="btnxv">
+                <p>{{titulo}}</p>
+            </div>
+        </div>
+      
+    </div>
+   
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.14/vue.min.js"></script>
+
+    <script>
+     
+        const app = new Vue({
+            el:"#app",           
+            data:{
+                titulo:"Entrar",
+                btnxv: true               
+            },
+            methods:{
+                btnx:function(){   
+                    
+                    this.btnxv = false;
+
+                    fetch(`https://${GetParentResourceName()}/entrada`, {
+                        method:'POST',
+                        headers:{
+                            'Content-Type': 'application/json; charset=UTF-8'
+                        },
+                        body: JSON.stringify({
+                            item: "close"
+                        })
+                    }).then( response => response.json()).then( response => console.log(response));
+            
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

@@ -89,4 +89,4 @@ async function ativarUser(id, ativo){
     }   
 }
 
-module.exports = { inserirSteam, verificarAtivado, verificarSteam, ativarUser }
+module.exports = { inserirSteam, verificarAtivado, verificarSteam, ativarUser, listarUser }

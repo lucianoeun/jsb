@@ -7,12 +7,12 @@ description 'Primeira base feita em javascript'
 version '1.0.0'
 
 client_script{ 
-    'login/client.js' 
+    'spawners.js' 
 }
 
 server_script {    
-    'login/server.js'    
+    'players.js'    
 }
 
-ui_page 'login/index.html'
-files 'login/index.html'
+-- ui_page 'login/index.html'
+-- files 'login/index.html'

@@ -102,6 +102,7 @@ onNet('pegarid', async()=>{
   emitNet('meuid', player, rst);   
 });
 
+
 //==[ FUNÇÃO SALVAR POSIÇÃO ]====================================
 
 
